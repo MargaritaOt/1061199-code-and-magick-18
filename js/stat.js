@@ -40,15 +40,15 @@ window.renderStatistics = function(ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
+    ctx.fillStyle = "#000";
     ctx.fillText(names[i], CLOUD_X + ((GAP + FONT_GAP) * i), CLOUD_Y * 2);
-    ctx.fillRect(CLOUD_X + ((GAP + FONT_GAP) * i), CLOUD_HEIGHT - FONT_GAP, BAR_WIDTH, (-(barHeight * times[i]) / maxTime));
     ctx.fillText(Math.ceil(times[i]), CLOUD_X + ((GAP + FONT_GAP) * i), FONT_GAP * 2);
-
-  };
-
-    if (names = "Вы") {
-       ctx.fillStyle = "rgba(255, 0, 0, 1)";
+    if (names[i] === "Вы") {
+      ctx.fillStyle = "rgba(255, 0, 0, 1)";
     } else {
       ctx.fillStyle = "hsl(240, 100%, 25%, " + Math.random() + ")";
     }
+
+    ctx.fillRect(CLOUD_X + ((GAP + FONT_GAP) * i), CLOUD_HEIGHT - FONT_GAP, BAR_WIDTH, (-(barHeight * times[i]) / maxTime));
+  };
 };
